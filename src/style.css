@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Josefin+Sans:wght@200;300;700&family=Lobster&display=swap');
+
+
+
+
+:root{
+--mainColor: rgb(58, 25, 58);
+--mainColor1: rgb(74, 7, 136);
+--peachDarkest: #181211;
+--peachLi: #EFB6AF;
+--peachDark: #5F4744;
+--peachLightDark: #A77D78;
+--peachLight: #F4CDC8;
+--peachLighter: #F9E4E2;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;    
+}
+
+body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+/* Page 1 */
+
+.game-name{
+    color: linear-gradient(180deg, var(--peachDarkest), var(--peachDark));
+    /* border: 1px solid red;    */
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+    font-size: 3rem;
+    font-family: acme;    
+}
+
+svg {
+    display: block;
+    font: 2.0em 'Montserrat';
+    width: 760px;
+    height: 140px;
+    margin: 0 auto;
+    /* border: 1px solid red;  */
+    background: var(--peachDarkest); 
+} 
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+	stroke: #4D163D;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: var(--peachLi);
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: var(--peachLight);
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: var(--peachLightDark);
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: var(--peachLighter);
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
+
+
+.hide{
+    display: none !important;
+}
+
+
+.choose-player{
+position: absolute;
+display: flex;
+place-self: center;
+justify-content: center;
+align-content: center;
+top: 200px;
+height: 100px;
+width: 540px;
+
+}
+
+.choose-player button,
+.three-rounds,
+.five-rounds,
+.start-game{
+    height: 30px;
+    width: 150px;
+    margin: 10px;
+    background: linear-gradient(90deg, var(--peachDarkest), var(--peachDark));
+    border: 0px solid var(--peachDarkest);
+    border-radius: 5px;
+    color: white; 
+    font-family: josefin sans;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+
+
+
+.player-name{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* border: 1px solid rgb(26, 122, 85); */
+    margin-top: 50px;
+}
+
+
+.player-one label,
+.player-two label,
+.player-select>p,
+.bots-box>p,
+.easy-bots>p,
+.difficult-bots>p,
+.game-board-rounds>p,
+.tom,
+.mike,
+.caleb,
+.lui{
+    /* border: 1px solid red; */
+    font-family: josefin sans;
+    font-weight: 700;
+    padding: 8px 8px 8px 0px;
+    color: var(--peachLight);
+}
+
+
+.tom,
+.mike,
+.caleb,
+.lui{
+    color: var(--peachDarkest) !important;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ai-bot{
+    background-color: var(--peachDark) !important;
+}
+
+.player-select p{
+    text-align: center;
+}
+
+#player-2,
+#player-1{
+    border: 2px solid var(--peachLight);
+    height: 30px;
+    outline: none;
+   border-radius: 5px;
+   padding: 0.6rem 1.2rem;
+   color: var(--peachLight);
+   background: none;
+   font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.default-input::after,.default-input1::after{
+    content: 'Start game with default name: Leo';
+    color:var(--peachLighter);
+    font-size: 1rem;
+   font-family: josefin sans;
+   margin-left: 55px;
+}
+.default-input1::after{
+    content: 'Start game with default name: Nikky';
+}
+
+.player-select{
+    padding: 20px;
+    background: var(--peachDarkest);
+    border-radius: 5px;
+    width: 400px;
+}
+
+
+
+.bots-box{
+height: 100%;
+border: 2px solid var(--peachLight);
+margin-top: 10px;
+border-radius: 5px; 
+}
+
+.bot{
+    border-top: 2px solid var(--peachLight);
+    display: flex;      
+}
+
+.easy-bots,
+.difficult-bots{
+    margin: 10px;
+    flex: 1 0 auto;    
+}
+
+.easy-bot-one-and-two,
+.difficult-bot-one-and-two{
+height: 50px;
+width: 100%;
+margin-top: 0px;
+border: 2px solid var(--peachLight);
+display: flex;
+border-radius: 5px;
+align-items: center;
+}
+
+.easy-bot,
+.difficult-bot{
+    flex: 1 1 auto;
+    margin: 5px;
+    width: 100%;
+    height: 30px;
+    background-color: var(--peachLight);
+}
+
+/* Some rounds codes are up */
+.three-rounds,
+.five-rounds{
+    background: var(--peachLighter);
+    border: 3px solid var(--peachDark) !important;
+    border-radius: 10px !important;
+    color: var(--peachDarkest);
+}
+
+.dgame-round{
+    background-color: var(--peachDark) !important;
+}
+
+
+.gameboard{
+    border:  2px solid red;
+    height: 600px;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game-grid{
+    margin-top: 70px;
+    height: 390px;
+    width: 390px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.grids{
+    height: 130px;
+    width: 130px;
+    border: 2px solid white;
+    background: var(--peachDark);
+}
+
+.game-board-rounds{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-board-rounds>p{
+color: var(--peachDarkest) !important;
+}
+
+.rounds{
+    width: 390px;
+    height: 50px;
+    border: 2px solid rgb(179, 21, 21);
+}
+
+.game-rounds{
+    margin: 5px;
+    border: 2px solid blue;
+}
