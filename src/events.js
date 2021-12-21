@@ -93,3 +93,12 @@ return {
 }
 })()
 
+const MakeNew = (() => {
+console.log('happy work')
+
+
+
+
+
+
+})()
