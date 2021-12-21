@@ -70,9 +70,9 @@ function checkForSelection(arrEl, claseName){
     return result 
 }
 
-// console.log(!checkForSelection(allBots, 'ai-bot'))
-let chekc = checkForSelection(allBots, 'ai-bot');
-console.log(chekc)
+    // console.log(!checkForSelection(allBots, 'ai-bot'))
+    let chekc = checkForSelection(allBots, 'ai-bot');
+    console.log(chekc)
 
     const startGameBtn = document.querySelector('.start-game')
     startGameBtn.addEventListener('click', ()=>{
@@ -85,6 +85,12 @@ console.log(chekc)
             alert('Please choose one AI bot as well as how many rounds to play')
         }       
     })
+
+
+    (function YoungPlayer(){
+        console.log(test)
+    })()
+
 
 
 
