@@ -1,4 +1,6 @@
-import './style.css';
+import './css/style.css';
+import './css/gameBoard.css';
+import './css/gameOver.css';
 import { gameLogic } from './gameLogic';
 import { gameTitle } from './components/gameTitle';
 import { selectPlayer } from './components/selectPlayer';
@@ -8,13 +10,14 @@ import { selectPlayer } from './components/selectPlayer';
 const ticTakToe = (function(){
         // Game Board
     const gameBoard = document.querySelector('.gameboard');
+    const gameBoardLabel = document.querySelector('.game-vs-label');
     const gameOver = document.querySelector('.game-over');
               
     // Grab number of Rounds to be played & Start game btn
     const threeRounds = document.querySelector('.three-rounds');
     const fiveRounds = document.querySelector('.five-rounds');
     
-    const startGameBtn = document.querySelector('.start-game');
+    const startGameBtn = document.getElementById('start-game');
 
     
     // Function to hide & show section
@@ -27,9 +30,9 @@ const ticTakToe = (function(){
             tag.classList.remove('hide');
         }
    
-return {hideElement, elementAppear, startGameBtn, threeRounds,
-    fiveRounds, gameBoard, gameOver
-}
+    return {hideElement, elementAppear, startGameBtn, threeRounds,
+        fiveRounds, gameBoard, gameOver, gameBoardLabel
+        }
 
 })()
 

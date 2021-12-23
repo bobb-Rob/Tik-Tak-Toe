@@ -9,11 +9,10 @@ const selectPlayer = (() => {
     
     const playersData = document.querySelector(".player-name");
 
-    const _playerOneInput = document.getElementById('player-1').defaultValue = 'Leo';
-    const playerOneValue = _playerOneInput.value;
-
-    const _playerTwoInput = document.getElementById('player-2').defaultValue = 'Nikky';
-    const playerTwoValue = _playerTwoInput.value;
+    const playerOneInput = document.getElementById('player-1');
+   
+    const playerTwoInput = document.getElementById('player-2');
+    
    
     const player2 = document.querySelector(".player-two");
     const vsTwoPlayers = document.getElementById('vs-player-two');
@@ -22,7 +21,7 @@ const selectPlayer = (() => {
 
 
 
-    return { gameMode, vsBotBtn, playersData, playerOneValue, playerTwoValue, player2, selectBotSection, vsTwoPlayers }
+    return { gameMode, vsBotBtn, playersData, playerOneInput, playerTwoInput, player2, selectBotSection, vsTwoPlayers }
 
 })()
 
