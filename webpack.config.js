@@ -11,7 +11,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Tic-tac-Toe',
-      filename: 'index_.html',
+      filename: 'index.html',
       template: './src/index.html'
     }),
   ],
