@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+<script defer src="main.js"></script></head>
+<body>
+    
+    <div class="game-name"> 
+        <svg viewBox="0 0 760 150">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">Tic Tak Toe</text>
+            </symbol>
+        
+            <g class = "g-ants">
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+            </g>
+        </svg>       
+    </div>
+
+    <div class="choose-player section">       
+        <button id="vs-bot">Player vs AI Bot</button>
+        <button id="vs-player-two">Two Players</button>
+    </div>
+
+    <div class="player-name">
+        <div class="player-select">
+            
+            <div class="player-one">
+                <label for="player-1">First player name</label>
+                <span class="default-input"><input type="text" name="player-1" id="player-1" ></span>
+            </div>
+
+            <p>vs</p>
+
+            <div class="player-two">
+                <label for="player-2">Second player name</label>
+                <span class="default-input1"><input type="text" name="player-2" id="player-2"></span>
+            </div>
+
+            <div class="bots-box">
+                <p>Choose an AI Bot</p>
+
+                <div class="bot">
+                    <div class="easy-bots">
+                        <p>Easy</p>
+                        <div class="easy-bot-one-and-two">
+                            <div class="easy-bot tom ai">Tom</div>
+                            <div class="easy-bot mike ai">Mike</div>
+                        </div>          
+                    </div>
+                    <div class="difficult-bots">
+                        <p>Hard</p>
+                        <div class="difficult-bot-one-and-two">
+                            <div class="difficult-bot caleb ai">Caleb</div>
+                            <div class="difficult-bot lui ai">Lui</div>
+                        </div>          
+                    </div>
+                </div>                          
+            </div>
+        </div>
+        
+
+        <div class="play-rounds">
+            <button class="three-rounds roud">Play 3 rounds</button>
+            <button class="five-rounds roud">Play 5 rounds</button>
+        </div>
+
+        <button class="start-game" id='start-game' >Start Game</button>
+    </div>
+
+    <section class="gameboard">
+        <div class="game-vs-label"></div>
+        <div class="game-grid">
+            <div class="grids">1</div>
+            <div class="grids">2</div>
+            <div class="grids">3</div>
+            <div class="grids">4</div>
+            <div class="grids">5</div>
+            <div class="grids">6</div>
+            <div class="grids">7</div>
+            <div class="grids">8</div>
+            <div class="grids">9</div>
+        </div>
+        <div class="game-board-rounds">
+            <p>Round</p>
+            <div class="play-three-rounds">
+               
+                <!-- Use DOM to generate the element according to choosen rounds -->
+            </div>
+            <div class="round-winner">
+                
+                <!-- Use DOM to generate the element according to choosen rounds -->
+            </div>
+        </div>
+    </section>
+
+
+    <section class="game-over">
+        <div>
+            <h3>Game over</h3>
+            <h2>Player name wins</h2>
+            <button>Play again</button>
+            <button>Start new game</button>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
