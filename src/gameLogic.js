@@ -1,5 +1,6 @@
 import {ticTakToe } from "./index"
 import { selectPlayer } from "./components/selectPlayer";
+import { gameTitle } from "./components/gameTitle";
 
 
 // Player two and Bot
@@ -21,10 +22,12 @@ const gameLogic = (function(){
     // let gameBoardLabel = document.querySelector('.game-vs-label');
     let gameBoardLabelOne = document.querySelector('.play1-display');
     let gameBoardLabelTwo = document.querySelector('.play2-display');
+    let turnDisplay = document.querySelector('.turn-display');
 
     class Player {
-        constructor(name) {
-            this.name = name;                      
+        constructor(name,marker) {
+            this.name = name;                    
+            this.marker = marker;                    
         }
         getName(){
             return this.name
@@ -41,12 +44,12 @@ const gameLogic = (function(){
     }
 
 
-    let playerOne = new Player('Leo')
-    let playerTwo = new Player('Nikky'); 
+    let playerOne = new Player('Leo', 'O')
+    let playerTwo = new Player('Nikky', 'X'); 
       
 
     // Play two Player section
-    selectPlayer.vsTwoPlayers.onclick =  ()=>{
+    selectPlayer.vsTwoPlayers.onclick =  () =>{
         ticTakToe.hideElement(selectPlayer.gameMode);
         ticTakToe.elementAppear(selectPlayer.playersData);
         ticTakToe.elementAppear(selectPlayer.player2);
@@ -56,7 +59,7 @@ const gameLogic = (function(){
         selectPlayer.playerOneInput.onchange = (e) => {
             console.log(e.target.value)
             playerOne.name = e.target.value;        
-           gameBoardLabelOne.textContent = playerOne.name + "  VS";
+           gameBoardLabelOne.textContent = playerOne.name;
 
         }    
 
@@ -80,6 +83,8 @@ const gameLogic = (function(){
             return 5;
         };
 
+
+
         // select round to play
     const allRounds = document.querySelectorAll('.roud')
     allRounds.forEach(round => {
@@ -87,8 +92,7 @@ const gameLogic = (function(){
             removeClasses(round, allRounds, 'dgame-round');
         })
     }); 
-
-     
+   
 
     function createRoundsDivs(){
         noOfRound = getRounds();
@@ -96,7 +100,10 @@ const gameLogic = (function(){
             const div = document.createElement('div');
             div.className = `each-rounds round-${i}`;
             div.textContent = `Round: ${i}`
+            const roundWinnerDisplay = document.createElement('div');
+            roundWinnerDisplay.className = `each-round-winner round-${i}-Winner`;
             document.querySelector('.how-many-rounds').append(div);
+            document.querySelector('.round-winner').append(roundWinnerDisplay);
         }            
     }
     // Rounds Logic ends here
@@ -107,10 +114,12 @@ const gameLogic = (function(){
     const startGameBtn = document.getElementById('start-game');
     startGameBtn.onclick = (e) => {
         ticTakToe.hideElement(selectPlayer.playersData); 
+        ticTakToe.hideElement(gameTitle.gameName); 
         ticTakToe.elementAppear(ticTakToe.gameBoard);
         // ticTakToe.elementAppear(ticTakToe.gameOver);
         gameBoardLabelTwo.textContent = playerTwo.name;
-        gameBoardLabelOne.textContent = playerOne.name + "  VS";
+        gameBoardLabelOne.textContent = playerOne.name;
+        turnDisplay.textContent = `${gameBoardLabelOne.textContent}'s turn`;
         createRoundsDivs();
         selectRound('.round-1', 0)
     }
@@ -140,6 +149,7 @@ const gameLogic = (function(){
         }       
     }
 
+
     // Select Bots
     const allBots = document.querySelectorAll('.ai');
     allBots.forEach(bot => {                 
@@ -154,25 +164,34 @@ const gameLogic = (function(){
         
         var occurrence = function (array) {
             "use strict";
-            var result = {};
-            if (array instanceof Array) { // Check if input is array.
-                array.forEach(function (v, i) {
-                    if (!result[v]) { // Initial object property creation.
-                        result[v] = [i]; // Create an array for that property.
-                    } else { // Same occurrences found.
-                        result[v].push(i); // Fill the array.
-                    }
-                });
-            }
-            return result;
+            let countedMark = array.reduce(function (allItems, mark) {
+                if (mark in allItems) {
+                    allItems[mark]++
+                }
+                else {
+                    allItems[mark] = 1
+                }
+                return allItems
+              }, {})
+
+              return countedMark
         };
 
-    // Game play Logic
-   
+
+    // Game play Logic   
     const boxes = document.querySelectorAll('.grids');
     const winningDisplay = document.querySelector('.winningStatus');  
     const restartGameBtn = document.querySelector('.restart-btn');
     const newGameBtn = document.querySelector('.new-game-btn');
+
+    const gameObj = {
+        spaces: [],
+        tick_circle: 'O',
+        tick_x: 'X',
+        currentPlayer: '',
+    }
+
+
 
     let spaces = [];
     const tick_circle = "O";
@@ -185,6 +204,7 @@ const gameLogic = (function(){
         });       
     }
 
+
     function displayGameWinner(winner){
         setTimeout(() => {
             ticTakToe.hideElement(ticTakToe.gameBoard);
@@ -193,28 +213,45 @@ const gameLogic = (function(){
         }, 1000);
     }
 
-    function checkForWinner(arr){
+    
+
+    function checkForWinner(arr){        
         let winner = occurrence(arr);               
-        console.log(winner)
-        if(winner.O > winner.X){           
-            displayGameWinner(winner.O);
-        }       
-        displayGameWinner(winner.X);
+        console.log(winner['O'] + 'player O')
+        let x = winner.X
+        let y = winner.O
+        console.log((x > y));
+
+        if(x > y){                  
+            displayGameWinner(gameBoardLabelOne.textContent);
+            return;
+        } else{
+            displayGameWinner(gameBoardLabelTwo.textContent);
+            console.log(winner['X'] + 'Player X')
+        }      
     }
 
 
     const boxClicked = (e) => {
         const id = e.target.id;
+        console.log(id);
         if(!spaces[id]) {
-            spaces[id] = currentPlayer;
+            spaces[id] = currentPlayer;           
             e.target.innerText = currentPlayer;
+            console.log(spaces);
+            if(currentPlayer !== 'O'){
+                turnDisplay.textContent = `${gameBoardLabelOne.textContent}'s turn` ;
+            }else{
+                turnDisplay.textContent = `${gameBoardLabelTwo.textContent}'s turn`;
+            }
+
             noOfRound = getRounds();
 
             if(playerWon()) {                                         
                 rounds.push(currentPlayer);
-                console.log(rounds.length);
-                console.log(currentPlayer);   
-               
+                console.log(rounds);
+                // console.log(currentPlayer);   
+              
                setTimeout( restart(), 3000); 
                 // return;
             }
@@ -246,6 +283,10 @@ const gameLogic = (function(){
                 checkForWinner(rounds);                  
             }              
       
+
+
+
+            
 
             if(playerDraw()) {
                 return;
@@ -327,8 +368,7 @@ const gameLogic = (function(){
         toggleRound('.round-1', 0)
       }
 
-      restartGameBtn.addEventListener('click', restartGame);
-     
+      restartGameBtn.addEventListener('click', restartGame);     
       drawBoard();
 
 
